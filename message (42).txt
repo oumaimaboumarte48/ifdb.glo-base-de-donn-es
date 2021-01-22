@@ -1,0 +1,48 @@
+db.movies.find({"year":{$eq:2010}}).pretty(); 
+db.movies.find({"year":{$gt:2009}}).count();
+0
+db.movies.find({year :2009}).count()
+0
+db.movies.find({year:2008},{_id:1,cast:1,genres:1})
+db.movies.find({title:/^A/}).pretty();
+db.movies.find({cast:"Timothy Gibbs",year:2011}).pretty()
+db.movies.find({genres:"Thriller",year:2011}).pretty()
+db.movies.find({genres:"Thriller",year:2016}).sort({title:-1}).pretty()
+ db.movies.insert([{title: "belg ben","year":2020}, {title:"beng testa","year":2020}]);
+'DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany or bulkWrite.'
+{ acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("600aacd59f06794a804b2379"),
+     '1': ObjectId("600aacd59f06794a804b237a") } }
+db.movies.deleteMany({year:{$lt:2000}})
+{ acknowledged: true, deletedCount: 0 }
+db.movies.updateMany({}, {$set: {"rating": []}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0 }
+db.movies.updateMany({_id:ObjectId("60084a39dd80d2427818b6df"),_id:ObjectId("60084a39dd80d2427818b6dd")}, {$set: {rating:[ { by: "moi", rating: 4 }, {by:"collaborateur", rating: 5} ]}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0 }
+db.movies.updateMany({}, {$set: {"ar":""}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0 }
+ db.movies.updateMany({},{$rename:{"ar":"averageRating"}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0 }
+db.movies.find({views:123444}).pretty()
+db.movies.insert({totalViews : [{views : [123444, 66855,78966]}]});
+{ acknowledged: true,
+  insertedIds: { '0': ObjectId("600aad7c9f06794a804b237b") } }
+db.movies.find({year :2009}).count()
+0
